@@ -1,0 +1,31 @@
+[
+    {
+        "institution": "National Institute of Technology Karnataka",
+        "degree": "M.Tech",
+        "field": "Computer Science & Engineering",
+        "specialization": "Information Security",
+        "logo": "https://cdn.brandfetch.io/idjtXg2tex/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1769659728938",
+        "duration": "2024 — 2026",
+        "location": "Surathkal, Karnataka",
+        "gpa": "7.7 / 10",
+        "highlights": [
+            "Specialization in Information Security",
+            "Teaching Assistant under GATE Fellowship",
+            "Focus areas: Network Security, Distributed Systems, Machine Learning"
+        ]
+    },
+    {
+        "institution": "Sikkim Manipal Institute of Technology",
+        "degree": "B.Tech",
+        "field": "Computer Science & Engineering",
+        "logo": "https://e7.pngegg.com/pngimages/821/546/png-clipart-manipal-academy-of-higher-education-sikkim-manipal-university-sikkim-manipal-institute-of-technology-manipal-university-jaipur-student-text-people-thumbnail.png",
+        "duration": "2020 — 2024",
+        "location": "Rangpo, Sikkim",
+        "gpa": "8.47 / 10",
+        "highlights": [
+            "Focused on Software Engineering and Web Technologies",
+            "Completed multiple full-stack and security related projects",
+            "Active participation in technical communities"
+        ]
+    }
+]

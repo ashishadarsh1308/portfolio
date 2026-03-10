@@ -1,0 +1,65 @@
+[
+    {
+        "category": "Languages",
+        "skills": [
+            "C/C++",
+            "Python",
+            "JavaScript",
+            "SQL"
+        ]
+    },
+    {
+        "category": "Machine Learning & AI",
+        "skills": [
+            "Random Forest",
+            "XGBoost",
+            "LightGBM",
+            "Decision Trees",
+            "Optuna",
+            "Scikit-learn"
+        ]
+    },
+    {
+        "category": "Web & Backend",
+        "skills": [
+            "React.js",
+            "Node.js",
+            "Express.js",
+            "REST APIs",
+            "JWT"
+        ]
+    },
+    {
+        "category": "Cybersecurity & Networks",
+        "skills": [
+            "5G Security",
+            "Network Slicing",
+            "IDS",
+            "Traffic Analysis",
+            "Wireshark",
+            "Cryptography"
+        ]
+    },
+    {
+        "category": "Databases",
+        "skills": [
+            "MySQL",
+            "MongoDB",
+            "Firebase"
+        ]
+    },
+    {
+        "category": "Tools & Platforms",
+        "skills": [
+            "Linux",
+            "Git",
+            "VirtualBox",
+            "Docker",
+            "Free5GC",
+            "UERANSIM",
+            "CICFlowMeter",
+            "tcpdump",
+            "Postman"
+        ]
+    }
+]

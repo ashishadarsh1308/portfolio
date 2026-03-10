@@ -1,0 +1,71 @@
+[
+    {
+        "title": "5G-NSID: A Labeled Cyberattack Dataset for 5G Network Slicing",
+        "description": "Built a virtual 5G testbed capturing real UE traffic, identifying attacks with a rule-based IDS, and classifying them using ML models (98% accuracy).",
+        "image": "https://www.digi.com/getattachment/Blog/post/5G-Network-Architecture/GettyImages-1156263601-1280x720.jpg?lang=en-US?q=80&w=800&auto=format&fit=crop",
+        "tags": [
+            "Free5GC",
+            "ML",
+            "XGBoost",
+            "LightGBM"
+        ],
+        "link": "/project/5g"
+    },
+    {
+        "title": "AI-Powered Job Portal",
+        "description": "A full-stack MERN job portal integrated with OpenAI for automated job description generation and robust JWT role-based authentication.",
+        "image": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800&auto=format&fit=crop",
+        "tags": [
+            "MERN",
+            "Redux",
+            "OpenAI",
+            "JWT"
+        ],
+        "link": "/project/ai-job-hunter"
+    },
+    {
+        "title": "Copyright Protection for Digital Images",
+        "description": "A digital watermarking scheme using visual cryptography for copyright protection, successfully extracting invisible watermarks against modifications.",
+        "image": "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=800&auto=format&fit=crop",
+        "tags": [
+            "Cryptography",
+            "Image Processing",
+            "Watermarking"
+        ],
+        "link": "/project/visual-crypto"
+    },
+    {
+        "title": "E-Commerce Web App",
+        "description": "A feature-rich MERN stack e-commerce platform with Redux state management, robust product filters, review systems, and secure JWT-based admin dashboards.",
+        "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop",
+        "tags": [
+            "React",
+            "Node.js",
+            "Redux",
+            "MongoDB"
+        ],
+        "link": "https://github.com/ashishadarsh1308/e-commerce"
+    },
+    {
+        "title": "Door to Door Delivery",
+        "description": "A hyper-local delivery app matching community product requests with available individuals. Features real-time FCFS task acceptance and automated notifications.",
+        "image": "https://images.unsplash.com/photo-1526367790999-0150786686a2?q=80&w=800&auto=format&fit=crop",
+        "tags": [
+            "MERN",
+            "Sockets",
+            "Real-time"
+        ],
+        "link": "https://github.com/ashishadarsh1308/food-mern"
+    },
+    {
+        "title": "Real-time Chat Application",
+        "description": "An intuitive real-time messaging platform connecting users globally. Supports instant private and group chats using a modern interface.",
+        "image": "https://previews.123rf.com/images/vectorknight/vectorknight1801/vectorknight180100050/94155800-new-message-dialog-chat-speech-bubble-notification-icon-vector.jpg",
+        "tags": [
+            "MERN",
+            "Socket.io",
+            "Messaging"
+        ],
+        "link": "https://github.com/ashishadarsh1308/Chat-web-mern"
+    }
+]
