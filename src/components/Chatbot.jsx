@@ -15,7 +15,7 @@ I am Ashish Kumar Adarsh. I am pursuing M.Tech in CSE (Information Security) at 
 
 ----------------------------------------
 � EDUCATION
-- M.Tech in Computer Science and Engineering (Information Security) from NITK Surathkal (GPA: 7.69).
+- M.Tech in Computer Science and Engineering (Information Security) from NITK Surathkal (GPA: 8.10).
 - B.Tech in Computer Science and Engineering from Sikkim Manipal Institute of Technology (GPA: 8.47).
 - Higher Secondary (Class XII): St. Michael's High School, CBSE, 76%.
 - Secondary School (Class X): Modern Public School, CBSE, 95%.
@@ -45,7 +45,7 @@ const SUGGESTED_QUESTIONS = [
 
 const API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 
-// todo: Add a check for API_KEY and display a warning in the console if it's not set.
+
 let groq;
 if (API_KEY) {
     groq = new Groq({ apiKey: API_KEY, dangerouslyAllowBrowser: true });
