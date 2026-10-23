@@ -165,7 +165,7 @@ const Chatbot = () => {
             console.error("Chat error:", error);
             const status = error?.status;
             const errorMessage = status === 401
-                ? 'The Groq API key is invalid or expired. Update VITE_GROQ_API_KEY and restart the dev server.'
+                ? 'Groq rejected this deployment’s API key. Check the VITE_GROQ_API_KEY setting and redeploy. For production, keep the key on a server, not in browser code.'
                 : status === 429
                     ? 'Groq request limit reached. Check your Groq account quota and try again.'
                     : status === 404
