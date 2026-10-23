@@ -1,41 +1,75 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Groq from 'groq-sdk';
-import { MessageCircle, X, Send, Bot } from 'lucide-react';
+import { ArrowUp, Bot, MessageCircle, Sparkles, X } from 'lucide-react';
+import './Chatbot.css';
 
-const SYSTEM_PROMPT = `You are an AI assistant representing Ashish Kumar Adarsh. 
-You answer questions as if you are Ashish himself, in a confident, structured, and interview-ready manner.
+const SYSTEM_PROMPT = `You are the personal AI assistant for Ashish Kumar Adarsh, an AI Engineer at Wipro. Help recruiters, hiring managers, developers, and visitors understand his documented background, skills, projects, and professional interests. Max content 100 words and summarise if possible and answer in bullet points where it required. Avoid repeating the full biography unless asked. Use the following information to answer questions, and don't use *, #, or any other formatting in your responses. Avoid repeating the same information multiple times. If a question is outside the portfolio knowledge base, acknowledge the limitation and suggest contacting Ashish for clarification.
 
-CRITICAL INSTRUCTIONS - READ CAREFULLY:
-1. KEEP ALL ANSWERS EXTREMELY SHORT AND TO THE POINT. Use 1-2 short sentences or concise bullet points. No long paragraphs.
-2. If the user asks ANY question that is NOT related to Ashish Kumar Adarsh (e.g. general knowledge, coding help, weather, random topics), you MUST reply EXACTLY with: "Please ask about Ashish." Do NOT add any apologies or extra text. Only say "Please ask about Ashish."
+## Identity and voice
+- Speak about Ashish in the third person. Do not impersonate him.
+- Be professional, natural, friendly, confident, and concise. Give more technical detail when a visitor asks about architecture, implementation, or research methods.
+- Represent his work honestly. Do not exaggerate, infer, or invent facts.
 
-----------------------------------------
-👨‍💻 INTRODUCTION
-I am Ashish Kumar Adarsh. I am pursuing M.Tech in CSE (Information Security) at NITK Surathkal (GPA: 7.69). B.Tech in CSE from SMIT (GPA: 8.47). I specialize in backend design, AI, and cybersecurity.
+## Professional summary
+Ashish Kumar Adarsh is an AI Engineer at Wipro with an academic background in Computer Science and Engineering, specializing in Information Security. His technical interests include Generative AI, LLMs, RAG, Agentic AI, backend engineering, machine learning, and cybersecurity. His documented project experience includes AI applications, semantic retrieval, RAG evaluation, and intrusion detection research in 5G network slicing.
 
-----------------------------------------
-� EDUCATION
-- M.Tech in Computer Science and Engineering (Information Security) from NITK Surathkal (GPA: 8.10).
-- B.Tech in Computer Science and Engineering from Sikkim Manipal Institute of Technology (GPA: 8.47).
-- Higher Secondary (Class XII): St. Michael's High School, CBSE, 76%.
-- Secondary School (Class X): Modern Public School, CBSE, 95%.
+## Current role
+Ashish currently works as an AI Engineer at Wipro. His professional profile is focused on AI engineering, LLM-based applications, and related technologies. The portfolio does not document his current Wipro client, assignments, specific responsibilities, production deployments, or business impact. Say so when asked; do not speculate.
 
-----------------------------------------
-🚀 PROJECTS
-1. 5G-NSID: Built a realistic cyberattack dataset for 5G networks using Free5GC. Achieved 98% detection accuracy with ML models.
-2. AI-Powered Job Portal: Full-stack platform using React, Node.js, and OpenAI API for intelligent resume parsing and job matching.
+## Education
+- M.Tech in Computer Science and Engineering (Information Security), National Institute of Technology Karnataka (NITK), Surathkal; GPA 8.09; August 2024-July 2026.
+- B.Tech in Computer Science and Engineering, Sikkim Manipal Institute of Technology; GPA 8.47; August 2020-July 2024.
 
-----------------------------------------
-💼 EXPERIENCE
-- Web Development Intern at FindFlames: Built scalable UI with React/Tailwind and integrated backend REST APIs with Firebase.
+## Featured projects
 
-----------------------------------------
-🧠 TECHNICAL SKILLS
-Languages: C, C++, Python, JavaScript, SQL
-ML: Random Forest, XGBoost, Scikit-learn
-Web: React.js, Node.js, Express.js, JWT
-Security: Network Slicing, IDS, Wireshark
-DBs: MySQL, MongoDB, Firebase`;
+### RAG-based AI-powered job portal
+An AI-powered job portal designed to improve job discovery through semantic search and context-aware retrieval rather than relying exclusively on keyword matching.
+- Developed an end-to-end RAG pipeline using ChromaDB for vector retrieval.
+- Implemented query rewriting and re-ranking to improve the relevance and ordering of retrieved job contexts.
+- Built backend services with FastAPI and Python, a React frontend, and structured data storage with PostgreSQL.
+- Created an evaluation framework with 100 test queries, ground-truth contexts, and reference answers.
+- Evaluated retrieval with Mean Reciprocal Rank (MRR) and nDCG@5, achieving 0.82 MRR and 0.88 nDCG@5.
+- Used LLM-as-a-Judge to assess generated answers for faithfulness, accuracy, and relevance.
+- Technologies: Python, FastAPI, React, PostgreSQL, ChromaDB, RAG, LLMs, query rewriting, and re-ranking.
+
+### 5G-NSID: labeled cyberattack dataset for 5G network slicing
+A cybersecurity research project developing a realistic, labeled dataset for machine-learning-based cyberattack detection in 5G network slicing environments.
+- Built a virtual 5G testbed using Free5GC and UERANSIM with three isolated network slices.
+- Developed a rule-based intrusion detection trigger using k-out-of-n logic to monitor network and system metrics.
+- Captured and labeled attack traffic using tcpdump and extracted more than 84 bidirectional flow features using CICFlowMeter.
+- Trained and tuned machine learning and deep learning models using Optuna.
+- Achieved up to 98% classification accuracy and 96% cross-dataset accuracy.
+- Technologies: Free5GC, UERANSIM, tcpdump, CICFlowMeter, Scikit-learn, Optuna, ensemble learning, and MLP.
+
+## Previous professional experience
+FindFlames, Web Development Intern, January 2024-June 2024:
+- Developed responsive, modular UI components using React.js, TypeScript, and Tailwind CSS.
+- Worked on backend integrations and application data synchronization using Firebase and Cloud Firestore.
+- Contributed to authentication flows, REST API integrations, and improvements in application security and data integrity.
+
+Do not confuse academic projects with employment: Wipro is Ashish's current employer, FindFlames was his internship, and the job portal and 5G-NSID are projects.
+
+## Technical skills
+- Programming: Python, C, C++, JavaScript, SQL.
+- Generative AI and LLMs: LLMs, prompt engineering, RAG, LangChain, fine-tuning, LoRA, QLoRA, Agentic AI, MCP.
+- Vector search and data: ChromaDB, vector embeddings, semantic search, MySQL, MongoDB, PostgreSQL.
+- Backend and APIs: FastAPI, REST APIs, Node.js.
+- Frontend: React.js, TypeScript, Tailwind CSS.
+- Machine learning: Scikit-learn, Random Forest, XGBoost, ensemble learning, model evaluation.
+- Cybersecurity: Information Security, intrusion detection systems (IDS), 5G network slicing, Wireshark, network traffic analysis.
+
+## Technical interests
+Ashish is interested in practical Generative AI applications, RAG architectures and retrieval quality, LLM evaluation and optimization, Agentic AI and tool-using systems, backend systems and APIs, machine learning for cybersecurity, network security, and intrusion detection. Present these as interests, not as confirmed technologies or responsibilities in his current Wipro assignment.
+
+## Response rules
+1. Use only facts in this prompt and other verified portfolio information.
+2. Never invent employers, titles, certifications, awards, publications, clients, project outcomes, years of experience, or achievements.
+3. Do not call Ashish an expert in every listed technology or claim commercial deployment unless documented.
+4. For recruiter questions, relate role requirements to documented skills and projects without guaranteeing suitability.
+5. If Wipro responsibilities, availability, contact details, or other requested information are not documented, say that it is unavailable in the current portfolio knowledge base. For contact requests, direct visitors to the contact details or professional links on the portfolio.
+6. Share only professional information intended for a public portfolio. Do not disclose private, financial, or sensitive information.
+7. For questions outside the portfolio knowledge base, briefly acknowledge the limitation and suggest contacting Ashish for clarification.
+8. Answer the visitor's question directly; do not repeat the full biography unless asked.`;
 
 const SUGGESTED_QUESTIONS = [
     "Tell me About Ashish.",
@@ -44,7 +78,6 @@ const SUGGESTED_QUESTIONS = [
 ];
 
 const API_KEY = import.meta.env.VITE_GROQ_API_KEY;
-
 
 let groq;
 if (API_KEY) {
@@ -111,7 +144,7 @@ const Chatbot = () => {
 
             const stream = await groq.chat.completions.create({
                 messages: apiMessages,
-                model: 'llama-3.1-8b-instant',
+                model: 'openai/gpt-oss-120b',
                 temperature: 0.2, // lowered temperature for more deterministic/strict format answering
                 max_completion_tokens: 512,
                 top_p: 1,
@@ -130,10 +163,18 @@ const Chatbot = () => {
             }
         } catch (error) {
             console.error("Chat error:", error);
+            const status = error?.status;
+            const errorMessage = status === 401
+                ? 'The Groq API key is invalid or expired. Update VITE_GROQ_API_KEY and restart the dev server.'
+                : status === 429
+                    ? 'Groq request limit reached. Check your Groq account quota and try again.'
+                    : status === 404
+                        ? 'The Groq model is unavailable. Check the configured model ID.'
+                        : 'Oops! My servers are a bit busy right now. Please try again later.';
             setMessages((prev) => {
                 const newMessages = [...prev];
                 if (newMessages[newMessages.length - 1].content === "") {
-                    newMessages[newMessages.length - 1].content = "Oops! My servers are a bit busy right now. Please try again later.";
+                    newMessages[newMessages.length - 1].content = errorMessage;
                 }
                 return newMessages;
             });
@@ -148,139 +189,114 @@ const Chatbot = () => {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-50">
-            {/* Intro Popup Message */}
+        <div className="portfolio-chat">
             {!isOpen && showPopup && (
-                <div className="absolute bottom-20 right-0 w-64 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 p-4 animate-fade-in-up flex flex-col gap-2 rounded-br-none cursor-pointer hover:-translate-y-1 transition-transform"
-                    onClick={handleOpenChat}>
-                    <div className="flex justify-between items-start">
-                        <div className="flex items-center gap-2">
-                            <div className="bg-indigo-100 dark:bg-indigo-900/50 p-1.5 rounded-full text-indigo-600 dark:text-indigo-400">
-                                <Bot size={16} />
-                            </div>
-                            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">AI Assistant</p>
-                        </div>
-                        <button
-                            onClick={(e) => { e.stopPropagation(); setShowPopup(false); }}
-                            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-                        >
-                            <X size={14} />
-                        </button>
-                    </div>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">
-                        Hi! 👋 Should I introduce you to Ashish?
-                    </p>
+                <div className="chat-teaser" role="status">
+                    <button
+                        type="button"
+                        className="chat-teaser-close"
+                        onClick={() => setShowPopup(false)}
+                        aria-label="Dismiss chat invitation"
+                    >
+                        <X size={15} />
+                    </button>
+                    <span className="chat-teaser-kicker"><Sparkles size={13} /> Portfolio assistant</span>
+                    <p>Curious about Ashish&apos;s work?</p>
+                    <button type="button" className="chat-teaser-link" onClick={handleOpenChat}>
+                        Start a conversation <span aria-hidden="true">↗</span>
+                    </button>
                 </div>
             )}
 
-            {/* Toggle Button */}
             {!isOpen && (
                 <button
+                    type="button"
                     onClick={handleOpenChat}
-                    className="bg-indigo-600 hover:bg-indigo-700 text-white p-4 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all hover:scale-110 flex items-center justify-center animate-bounce duration-300"
+                    className="chat-launcher"
+                    aria-label="Open portfolio assistant"
+                    title="Ask about Ashish"
                 >
-                    <MessageCircle size={28} />
+                    <MessageCircle size={23} strokeWidth={1.8} />
+                    <span className="chat-launcher-dot" />
                 </button>
             )}
 
-            {/* Chat Window */}
             {isOpen && (
-                <div className="bg-white dark:bg-gray-900 w-[350px] sm:w-[400px] h-[550px] max-h-[85vh] rounded-2xl shadow-2xl flex flex-col border border-gray-200 dark:border-gray-800 transition-all overflow-hidden rounded-bl-none">
-                    {/* Header */}
-                    <div className="bg-gradient-to-r from-indigo-600 to-indigo-500 text-white p-4 flex justify-between items-center z-10 shadow-sm rounded-t-2xl">
-                        <div className="flex items-center space-x-3">
-                            <div className="bg-white/20 p-2 rounded-full relative">
-                                <Bot size={22} />
-                                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 border-2 border-indigo-600 rounded-full"></span>
-                            </div>
+                <section className="chat-panel" aria-label="Chat with Ashish's portfolio assistant">
+                    <header className="chat-header">
+                        <div className="chat-header-main">
+                            <div className="chat-avatar"><Bot size={22} strokeWidth={1.7} /></div>
                             <div>
-                                <h3 className="font-semibold text-[15px] leading-tight">Ashish AI</h3>
-                                <p className="text-xs font-medium text-indigo-100/90 tracking-wide mt-0.5">Online & Ready</p>
+                                <p className="chat-eyebrow">ASHISH KUMAR ADARSH</p>
+                                <h2>Portfolio assistant</h2>
+                                <p className="chat-status"><span /> Here to help you explore</p>
                             </div>
                         </div>
                         <button
+                            type="button"
                             onClick={() => setIsOpen(false)}
-                            className="text-white/80 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-1.5 transition-colors"
+                            className="chat-close"
+                            aria-label="Close chat"
+                            title="Close chat"
                         >
-                            <X size={18} />
+                            <X size={19} />
                         </button>
-                    </div>
+                    </header>
 
-                    {/* Messages Area */}
-                    <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 dark:bg-[#0a0a0a]">
+                    <div className="chat-messages">
                         {messages.map((msg, index) => (
-                            <div
-                                key={index}
-                                className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'
-                                    } animate-fade-in`}
-                            >
-                                <div
-                                    className={`max-w-[85%] rounded-2xl p-3.5 text-[14px] leading-relaxed shadow-sm flex flex-col ${msg.role === 'user'
-                                        ? 'bg-indigo-600 text-white rounded-tr-sm'
-                                        : 'bg-white dark:bg-gray-800/80 text-gray-800 dark:text-gray-100 border border-gray-100 dark:border-gray-700/50 rounded-tl-sm'
-                                        }`}
-                                >
-                                    <div className="whitespace-pre-wrap">{msg.content}</div>
+                            <div key={index} className={`chat-message-row ${msg.role === 'user' ? 'is-user' : 'is-assistant'}`}>
+                                {msg.role !== 'user' && <span className="chat-message-avatar"><Sparkles size={13} /></span>}
+                                <div className={`chat-message ${msg.role === 'user' ? 'chat-message-user' : 'chat-message-assistant'}`}>
+                                    {msg.content}
                                 </div>
                             </div>
                         ))}
 
-                        {/* Quick Suggestions (FAQ) */}
                         {!isLoading && messages.length < 3 && (
-                            <div className="flex flex-col gap-2 mt-4 items-start">
-                                <p className="text-xs font-medium text-gray-500 dark:text-gray-400 pl-1 uppercase tracking-wider">Suggested</p>
-                                <div className="flex flex-wrap gap-2">
-                                    {SUGGESTED_QUESTIONS.map((q, idx) => (
-                                        <button
-                                            key={idx}
-                                            onClick={() => sendMessage(q)}
-                                            className="text-left text-xs bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/30 px-3 py-2 rounded-xl transition-colors shadow-sm"
-                                        >
-                                            {q}
-                                        </button>
-                                    ))}
-                                </div>
+                            <div className="chat-suggestions">
+                                <p>EXPLORE</p>
+                                {SUGGESTED_QUESTIONS.map((question) => (
+                                    <button type="button" key={question} onClick={() => sendMessage(question)}>
+                                        {question}<span aria-hidden="true">↗</span>
+                                    </button>
+                                ))}
                             </div>
                         )}
 
                         {isLoading && (
-                            <div className="flex justify-start">
-                                <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl rounded-tl-none shadow-sm border border-gray-100 dark:border-gray-700">
-                                    <div className="flex space-x-1.5 items-center justify-center">
-                                        <div className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                                        <div className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                                        <div className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-                                    </div>
+                            <div className="chat-message-row is-assistant" aria-label="Assistant is responding">
+                                <span className="chat-message-avatar"><Sparkles size={13} /></span>
+                                <div className="chat-message chat-message-assistant chat-typing">
+                                    <span /><span /><span />
                                 </div>
                             </div>
                         )}
                         <div ref={messagesEndRef} />
                     </div>
 
-                    {/* Input Area */}
-                    <form onSubmit={handleSubmit} className="p-3 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 z-10 shadow-[0_-4px_15px_rgba(0,0,0,0.03)] dark:shadow-none">
-                        <div className="relative flex items-center">
+                    <form onSubmit={handleSubmit} className="chat-composer">
+                        <label className="chat-input-wrap">
+                            <span className="sr-only">Ask a question</span>
                             <input
                                 type="text"
                                 value={input}
-                                onChange={(e) => setInput(e.target.value)}
-                                placeholder="Ask me anything..."
-                                className="w-full bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-full py-3.5 pl-5 pr-14 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm transition-all shadow-inner h-12"
+                                onChange={(event) => setInput(event.target.value)}
+                                placeholder="Ask about projects, skills..."
                                 disabled={isLoading}
                             />
                             <button
                                 type="submit"
                                 disabled={!input.trim() || isLoading}
-                                className="absolute right-1.5 p-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 disabled:opacity-50 disabled:hover:bg-indigo-600 transition-colors flex items-center justify-center w-9 h-9"
+                                aria-label="Send message"
+                                title="Send message"
                             >
-                                <Send size={15} className="ml-0.5" />
+                                <ArrowUp size={19} strokeWidth={2.2} />
                             </button>
-                        </div>
-                        <div className="text-center mt-2">
-                            <span className="text-[10px] text-gray-400 dark:text-gray-500">AI-generated • Groq Engine</span>
-                        </div>
+                        </label>
+                        <p className="chat-disclaimer">AI-generated responses · Based on portfolio information</p>
                     </form>
-                </div>
+                </section>
             )}
         </div>
     );

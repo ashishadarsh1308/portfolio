@@ -6,6 +6,7 @@ import skillsData from '../data/skills.json';
 const Skills = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(1); // 1 for right, -1 for left
+    const isMobileViewport = typeof window !== 'undefined' && window.innerWidth < 768;
 
     // Autoplay logic
     useEffect(() => {
@@ -28,23 +29,30 @@ const Skills = () => {
     };
 
     const variants = {
-        enter: (direction) => ({
-            x: direction > 0 ? 1000 : -1000,
-            opacity: 0,
-            scale: 0.9
-        }),
+        enter: (direction) => {
+            return {
+                x: isMobileViewport ? 0 : direction > 0 ? 1000 : -1000,
+                y: isMobileViewport ? (direction > 0 ? 12 : -12) : 0,
+                opacity: 0,
+                scale: 0.9
+            };
+        },
         center: {
             zIndex: 1,
             x: 0,
+            y: 0,
             opacity: 1,
             scale: 1
         },
-        exit: (direction) => ({
-            zIndex: 0,
-            x: direction < 0 ? 1000 : -1000,
-            opacity: 0,
-            scale: 0.9
-        })
+        exit: (direction) => {
+            return {
+                zIndex: 0,
+                x: isMobileViewport ? 0 : direction < 0 ? 1000 : -1000,
+                y: isMobileViewport ? (direction < 0 ? 12 : -12) : 0,
+                opacity: 0,
+                scale: 0.9
+            };
+        }
     };
 
     return (
@@ -67,12 +75,12 @@ const Skills = () => {
                 </motion.div>
 
                 {/* Slider Container */}
-                <div className="relative h-[280px] md:h-[280px] w-full flex items-center justify-center">
+                <div className="relative h-[440px] md:h-[280px] w-full flex items-center justify-center">
 
                     {/* Navigation Buttons */}
                     <button
                         onClick={handlePrev}
-                        className="absolute left-0 md:left-4 z-20 p-4 bg-gray-900/60 border border-gray-700 hover:border-cyan-500/50 rounded-full text-white hover:text-cyan-400 transition-all shadow-lg backdrop-blur-md group"
+                        className="absolute left-0 -top-12 md:top-1/2 md:-translate-y-1/2 md:left-4 z-20 p-2.5 md:p-4 bg-gray-900/60 border border-gray-700 hover:border-cyan-500/50 rounded-full text-white hover:text-cyan-400 transition-all shadow-lg backdrop-blur-md group"
                     >
                         <svg className="w-6 h-6 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
@@ -81,7 +89,7 @@ const Skills = () => {
 
                     <button
                         onClick={handleNext}
-                        className="absolute right-0 md:right-4 z-20 p-4 bg-gray-900/60 border border-gray-700 hover:border-cyan-500/50 rounded-full text-white hover:text-cyan-400 transition-all shadow-lg backdrop-blur-md group"
+                        className="absolute right-0 -top-12 md:top-1/2 md:-translate-y-1/2 md:right-4 z-20 p-2.5 md:p-4 bg-gray-900/60 border border-gray-700 hover:border-cyan-500/50 rounded-full text-white hover:text-cyan-400 transition-all shadow-lg backdrop-blur-md group"
                     >
                         <svg className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
@@ -89,8 +97,8 @@ const Skills = () => {
                     </button>
 
                     {/* Slides */}
-                    <div className="w-full max-w-4xl overflow-hidden px-14 md:px-24 h-full relative flex items-center justify-center">
-                        <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                    <div className="w-full max-w-4xl overflow-hidden px-4 sm:px-8 md:px-24 h-full relative flex items-center justify-center">
+                        <AnimatePresence initial={false} custom={direction} mode={isMobileViewport ? "wait" : "popLayout"}>
                             <motion.div
                                 key={currentIndex}
                                 custom={direction}
@@ -104,20 +112,21 @@ const Skills = () => {
                                 }}
                                 className="w-full flex flex-col items-center"
                             >
-                                <h3 className="text-2xl md:text-3xl font-bold text-white mb-10 border-b-2 border-indigo-500/50 pb-3 px-8 text-center tracking-wide">
+                                <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-10 border-b-2 border-indigo-500/50 pb-3 px-4 md:px-8 text-center tracking-wide">
                                     {skillsData[currentIndex].category}
                                 </h3>
 
-                                <div className="flex flex-wrap justify-center gap-4 md:gap-5">
-                                    {skillsData[currentIndex].skills.map((skill, idx) => (
+                                <div className="grid w-full grid-cols-2 justify-center gap-3 md:flex md:flex-wrap md:gap-5">
+                                    {skillsData[currentIndex].skills.map((skill) => (
                                         <Tilt
-                                            key={idx}
+                                            key={skill}
+                                            className="w-full md:w-auto"
                                             tiltMaxAngleX={15}
                                             tiltMaxAngleY={15}
                                             scale={1.1}
                                             transitionSpeed={2000}
                                         >
-                                            <div className="relative group/skill overflow-hidden bg-gray-800/80 backdrop-blur-md border border-gray-700/80 hover:border-cyan-400/50 px-6 py-3 rounded-xl shadow-lg hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,211,238,0.25)] transition-all cursor-default block">
+                                            <div className="relative group/skill flex min-h-11 w-full items-center justify-center overflow-hidden bg-gray-800/80 backdrop-blur-md border border-gray-700/80 hover:border-cyan-400/50 px-2 py-2 md:min-h-0 md:w-auto md:px-6 md:py-3 rounded-xl shadow-lg hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,211,238,0.25)] transition-all cursor-default block">
 
                                                 {/* Gradient Hover Background */}
                                                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/90 to-cyan-600/90 opacity-0 group-hover/skill:opacity-100 transition-opacity duration-300"></div>
@@ -125,7 +134,7 @@ const Skills = () => {
                                                 {/* Inner Subtle Glow on Hover */}
                                                 <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-cyan-500 blur-md opacity-0 group-hover/skill:opacity-20 transition-opacity duration-300"></div>
 
-                                                <span className="relative z-10 font-medium text-lg text-gray-200 group-hover/skill:text-white transition-colors">
+                                                <span className="relative z-10 text-center font-medium text-sm md:text-lg text-gray-200 group-hover/skill:text-white transition-colors">
                                                     {skill}
                                                 </span>
                                             </div>

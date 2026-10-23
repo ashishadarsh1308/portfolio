@@ -1,6 +1,20 @@
 [
     {
-        "category": "Languages",
+        "category": "Generative AI & LLMs",
+        "skills": [
+            "LLMs",
+            "Prompt Engineering",
+            "RAG",
+            "LangChain",
+            "Fine-Tuning",
+            "LoRA",
+            "QLoRA",
+            "Agentic AI",
+            "MCP"
+        ]
+    },
+    {
+        "category": "Programming Languages",
         "skills": [
             "C/C++",
             "Python",
@@ -9,43 +23,51 @@
         ]
     },
     {
-        "category": "Machine Learning & AI",
+        "category": "Vector Search & Data",
         "skills": [
-            "Random Forest",
-            "XGBoost",
-            "LightGBM",
-            "Decision Trees",
-            "Optuna",
-            "Scikit-learn"
-        ]
-    },
-    {
-        "category": "Web & Backend",
-        "skills": [
-            "React.js",
-            "Node.js",
-            "Express.js",
-            "REST APIs",
-            "JWT"
-        ]
-    },
-    {
-        "category": "Cybersecurity & Networks",
-        "skills": [
-            "5G Security",
-            "Network Slicing",
-            "IDS",
-            "Traffic Analysis",
-            "Wireshark",
-            "Cryptography"
-        ]
-    },
-    {
-        "category": "Databases",
-        "skills": [
+            "ChromaDB",
+            "Vector Embeddings",
+            "Semantic Search",
             "MySQL",
             "MongoDB",
+            "PostgreSQL",
             "Firebase"
+        ]
+    },
+    {
+        "category": "Backend & APIs",
+        "skills": [
+            "FastAPI",
+            "REST APIs",
+            "Node.js",
+            "React.js",
+            "TypeScript",
+            "Tailwind CSS"
+        ]
+    },
+    {
+        "category": "Machine Learning",
+        "skills": [
+            "Scikit-learn",
+            "Random Forest",
+            "XGBoost",
+            "Optuna",
+            "Ensemble Learning",
+            "Model Evaluation"
+        ]
+    },
+    {
+        "category": "Cybersecurity & 5G Networks",
+        "skills": [
+            "Information Security",
+            "5G Network Slicing",
+            "Intrusion Detection",
+            "Wireshark",
+            "Traffic Analysis",
+            "Free5GC",
+            "UERANSIM",
+            "CICFlowMeter",
+            "tcpdump"
         ]
     },
     {
@@ -53,12 +75,7 @@
         "skills": [
             "Linux",
             "Git",
-            "VirtualBox",
             "Docker",
-            "Free5GC",
-            "UERANSIM",
-            "CICFlowMeter",
-            "tcpdump",
             "Postman"
         ]
     }

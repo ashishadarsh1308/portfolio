@@ -19,10 +19,10 @@ const Hero = () => {
 
     /* ROTATING FEATURES */
     const features = [
-        "Full Stack Developer",
-        "Machine Learning Engineer",
-        "Cybersecurity",
-        "M.Tech CSE (Information Security) @ NITK",
+        "AI Engineer at Wipro",
+        "Generative AI & LLMs",
+        "RAG & Agentic AI",
+        "Information Security",
     ];
 
     const [featureIndex, setFeatureIndex] = useState(0);
@@ -121,9 +121,8 @@ const Hero = () => {
                             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                             className="max-w-xl mx-auto lg:mx-0 text-lg md:text-xl text-gray-400 mb-6 leading-relaxed font-light"
                         >
-                            M.Tech in <span className="text-white font-medium">Computer Science </span> (Information Security) at <span className="text-white font-medium"> NITK</span>,
-                            skilled in <span className="text-white font-medium">Full Stack Development, Machine Learning, and Network Security</span>,
-                            seeking opportunities in <span className="text-white font-medium">Software Engineering</span>.
+                            Ashish is an <span className="text-white font-medium">AI Engineer at Wipro</span> with an M.Tech in Computer Science (Information Security) from <span className="text-white font-medium">NITK</span>.
+                            He focuses on <span className="text-white font-medium">Generative AI, LLM applications, RAG, and Agentic AI</span>, with project experience in backend engineering and cybersecurity.
                         </motion.p>
 
                         {/* ROTATING FEATURES */}
