@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Groq from 'groq-sdk';
 import { ArrowUp, Bot, MessageCircle, Sparkles, X } from 'lucide-react';
 import './Chatbot.css';
 
@@ -77,13 +76,6 @@ const SUGGESTED_QUESTIONS = [
     "Education of Ashish."
 ];
 
-const API_KEY = import.meta.env.VITE_GROQ_API_KEY;
-
-let groq;
-if (API_KEY) {
-    groq = new Groq({ apiKey: API_KEY, dangerouslyAllowBrowser: true });
-}
-
 const Chatbot = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
@@ -95,7 +87,6 @@ const Chatbot = () => {
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
-        // Show the intro popup after 2.5 seconds
         const timer = setTimeout(() => {
             setShowPopup(true);
         }, 2500);
@@ -112,7 +103,7 @@ const Chatbot = () => {
 
     const handleOpenChat = () => {
         setIsOpen(true);
-        setShowPopup(false); // Hide the welcome prompt once chat opens
+        setShowPopup(false);
     };
 
     const sendMessage = async (text) => {
@@ -123,61 +114,38 @@ const Chatbot = () => {
         setInput('');
         setIsLoading(true);
 
-        if (!groq) {
-            setMessages((prev) => [
-                ...prev,
-                { role: 'assistant', content: 'Error: Groq API key is not configured.' }
-            ]);
-            setIsLoading(false);
-            return;
-        }
+        const chatHistory = messages.filter((m) => m.role !== 'system');
+        const apiMessages = [
+            { role: 'system', content: SYSTEM_PROMPT },
+            ...chatHistory.map((m) => ({ role: m.role, content: m.content })),
+            { role: 'user', content: userMessage.content }
+        ];
 
         try {
-            const chatHistory = messages.filter((m) => m.role !== 'system');
-            const apiMessages = [
-                { role: 'system', content: SYSTEM_PROMPT },
-                ...chatHistory.map((m) => ({ role: m.role, content: m.content })),
-                { role: 'user', content: userMessage.content }
-            ];
-
-            setMessages((prev) => [...prev, { role: 'assistant', content: '' }]);
-
-            const stream = await groq.chat.completions.create({
-                messages: apiMessages,
-                model: 'openai/gpt-oss-120b',
-                temperature: 0.2, // lowered temperature for more deterministic/strict format answering
-                max_completion_tokens: 512,
-                top_p: 1,
-                stream: true,
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ messages: apiMessages }),
             });
 
-            let fullResponse = '';
-            for await (const chunk of stream) {
-                const delta = chunk.choices[0]?.delta?.content || "";
-                fullResponse += delta;
-                setMessages((prev) => {
-                    const newMessages = [...prev];
-                    newMessages[newMessages.length - 1].content = fullResponse;
-                    return newMessages;
-                });
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Server error occurred');
             }
+
+            setMessages((prev) => [
+                ...prev,
+                { role: 'assistant', content: data.reply }
+            ]);
         } catch (error) {
             console.error("Chat error:", error);
-            const status = error?.status;
-            const errorMessage = status === 401
-                ? 'Groq rejected this deployment’s API key. Check the VITE_GROQ_API_KEY setting and redeploy. For production, keep the key on a server, not in browser code.'
-                : status === 429
-                    ? 'Groq request limit reached. Check your Groq account quota and try again.'
-                    : status === 404
-                        ? 'The Groq model is unavailable. Check the configured model ID.'
-                        : 'Oops! My servers are a bit busy right now. Please try again later.';
-            setMessages((prev) => {
-                const newMessages = [...prev];
-                if (newMessages[newMessages.length - 1].content === "") {
-                    newMessages[newMessages.length - 1].content = errorMessage;
-                }
-                return newMessages;
-            });
+            setMessages((prev) => [
+                ...prev,
+                { role: 'assistant', content: 'Oops! My servers are a bit busy right now. Please try again later.' }
+            ]);
         } finally {
             setIsLoading(false);
         }
