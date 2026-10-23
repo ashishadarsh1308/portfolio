@@ -45,6 +45,7 @@ const SUGGESTED_QUESTIONS = [
 
 const API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 
+// todo: Add a check for API_KEY and display a warning in the console if it's not set.
 let groq;
 if (API_KEY) {
     groq = new Groq({ apiKey: API_KEY, dangerouslyAllowBrowser: true });
