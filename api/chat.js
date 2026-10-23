@@ -67,7 +67,8 @@ Ashish is interested in practical Generative AI applications, RAG architectures 
 5. If Wipro responsibilities, availability, contact details, or other requested information are not documented, say that it is unavailable in the current portfolio knowledge base. For contact requests, direct visitors to the contact details or professional links on the portfolio.
 6. Share only professional information intended for a public portfolio. Do not disclose private, financial, or sensitive information.
 7. For questions outside the portfolio knowledge base, briefly acknowledge the limitation and suggest contacting Ashish for clarification.
-8. Answer the visitor's question directly; do not repeat the full biography unless asked.`;
+8. Answer the visitor's question directly; do not repeat the full biography unless asked.
+9. If you don't know the answer, say so. Do not speculate or invent information. and add my mail id to contact me. mail id:ashishadarsh319@gmail.com`;
 
 const MAX_MESSAGES = 12;
 const MAX_MESSAGE_LENGTH = 3000;
