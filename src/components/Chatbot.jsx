@@ -43,7 +43,8 @@ const SUGGESTED_QUESTIONS = [
     "Education of Ashish."
 ];
 
-const API_KEY = import.meta.env.VITE_GROQ_API_KEY;
+// const API_KEY = import.meta.env.VITE_GROQ_API_KEY;
+const API_KEY = "REDACTED";
 
 let groq;
 if (API_KEY) {
@@ -215,8 +216,8 @@ const Chatbot = () => {
                             >
                                 <div
                                     className={`max-w-[85%] rounded-2xl p-3.5 text-[14px] leading-relaxed shadow-sm flex flex-col ${msg.role === 'user'
-                                            ? 'bg-indigo-600 text-white rounded-tr-sm'
-                                            : 'bg-white dark:bg-gray-800/80 text-gray-800 dark:text-gray-100 border border-gray-100 dark:border-gray-700/50 rounded-tl-sm'
+                                        ? 'bg-indigo-600 text-white rounded-tr-sm'
+                                        : 'bg-white dark:bg-gray-800/80 text-gray-800 dark:text-gray-100 border border-gray-100 dark:border-gray-700/50 rounded-tl-sm'
                                         }`}
                                 >
                                     <div className="whitespace-pre-wrap">{msg.content}</div>
