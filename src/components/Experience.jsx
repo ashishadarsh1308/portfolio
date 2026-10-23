@@ -139,9 +139,11 @@ const Experience = () => {
                                                     </h3>
                                                     <div className="text-lg font-medium text-gray-300 mt-1">
                                                         {exp.company}
-                                                        <span className="text-sm font-normal text-gray-500 ml-2">
-                                                            ({exp.type})
-                                                        </span>
+                                                        {exp.type && (
+                                                            <span className="text-sm font-normal text-gray-500 ml-2">
+                                                                ({exp.type})
+                                                            </span>
+                                                        )}
                                                     </div>
                                                 </div>
                                             </div>
@@ -150,13 +152,15 @@ const Experience = () => {
                                                 <div className="text-sm font-semibold text-indigo-400 bg-indigo-500/10 inline-block px-3 py-1 rounded-full border border-indigo-500/20">
                                                     {exp.date}
                                                 </div>
-                                                <div className="text-sm text-gray-500 mt-2 flex items-center md:justify-end">
-                                                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                    </svg>
-                                                    {exp.location}
-                                                </div>
+                                                {exp.location && (
+                                                    <div className="text-sm text-gray-500 mt-2 flex items-center md:justify-end">
+                                                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                        </svg>
+                                                        {exp.location}
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
 
