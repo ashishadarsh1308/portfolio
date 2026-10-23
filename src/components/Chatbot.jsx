@@ -43,8 +43,7 @@ const SUGGESTED_QUESTIONS = [
     "Education of Ashish."
 ];
 
-// const API_KEY = import.meta.env.VITE_GROQ_API_KEY;
-const API_KEY = "REDACTED";
+const API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 
 let groq;
 if (API_KEY) {
